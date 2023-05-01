@@ -1,0 +1,12 @@
+
+
+spring:
+  profile:
+    active: test
+  application:
+    name: student-app-ws
+  datasource:
+    enabled: true
+    url: jdbc:derby:memory:test;
+  jpa:
+    show-sql: true

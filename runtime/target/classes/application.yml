@@ -1,0 +1,17 @@
+
+
+spring:
+  profile:
+    active: test
+  application:
+    name: student-app-ws
+  datasource:
+    enabled: true
+    url: jdbc:derby:memory:test;
+  jpa:
+    show-sql: true
+
+server:
+  port : 8094
+  servlet:
+    context-path: /
