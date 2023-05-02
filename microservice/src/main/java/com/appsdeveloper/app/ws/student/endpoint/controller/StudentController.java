@@ -32,7 +32,7 @@ public class StudentController {
                     MediaType.APPLICATION_XML_VALUE })
     //@ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Student> create( @RequestBody @Valid Student student) {
-        return new ResponseEntity<Student>(studentService.create(student), HttpStatus.CREATED);
+        return new ResponseEntity<>(studentService.create(student), HttpStatus.CREATED);
     }
 
     @PostMapping( path = "/bulk",
@@ -43,10 +43,30 @@ public class StudentController {
                     MediaType.APPLICATION_JSON_VALUE,
                     MediaType.APPLICATION_XML_VALUE })
     //@ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Student> createBulk(@RequestBody @Valid List<Student> student) {
-        return new ResponseEntity<Student>(studentService.createBulk(student), HttpStatus.CREATED);
+    public ResponseEntity<List<Student>> createBulk(@RequestBody @Valid List<Student> students) {
+        return new ResponseEntity<>(studentService.createBulk(students), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/{id}")
-    public 
+    public ResponseEntity<Student> findById(@PathVariable String id) {
+        return new ResponseEntity<>(studentService.findById(id), HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/{id}",
+            consumes = {
+                    MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE },
+            produces = {
+                    MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE }
+    )
+    public ResponseEntity<Student> update(@PathVariable String id, @RequestBody @Valid Student student) {
+        return new ResponseEntity<>(studentService.update(student, id), HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        studentService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

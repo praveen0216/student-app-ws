@@ -20,7 +20,7 @@ public interface StudentService {
      * @param student
      * @return created list of Student
      */
-    public Student createBulk(List<Student> student);
+    public List<Student> createBulk(List<Student> student);
 
 
     /**
@@ -38,7 +38,7 @@ public interface StudentService {
      * @param student
      * @return updated Student
      */
-    public Student update(Student student);
+    public Student update(Student student, String id);
 
     /**
      * delete one student by id
